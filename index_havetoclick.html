@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>产品有效期查询</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 400px;
+            margin: 20px auto;
+            padding: 20px;
+            text-align: center;
+        }
+        select, button {
+            padding: 10px;
+            margin: 10px;
+            font-size: 16px;
+            width: 80%;
+        }
+        .result {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #f5f5f5;
+            border-radius: 5px;
+            font-family: monospace;
+            line-height: 1.8;
+        }
+    </style>
+</head>
+<body>
+    <h2>产品有效期查询</h2>
+    <select id="productSelect">
+        <option value="">请选择产品</option>
+        <option value="75">可乐（75天）</option>
+        <option value="75">雪碧（75天）</option>
+        <option value="75">零度可乐（75天）</option>
+        <option value="120">柠檬红茶（120天）</option>
+        <option value="120">芬达（120天）</option>
+        <option value="120">怡泉+c（120天）</option>
+    </select>
+    
+    <br>
+    <button onclick="calculateExpiry()">查询有效期</button>
+    
+    <div id="result" class="result" style="display:none;">
+        <div id="currentDate"></div>
+        <div id="expiryDate"></div>
+    </div>
+
+    <script>
+        function formatDate(date) {
+            const year = date.getFullYear();
+            const month = String(date.getMonth() + 1).padStart(2, '0');
+            const day = String(date.getDate()).padStart(2, '0');
+            return `${year}${month}${day}`;
+        }
+        
+        function calculateExpiry() {
+            const select = document.getElementById('productSelect');
+            const days = parseInt(select.value);
+            
+            if (!days) {
+                alert('请选择产品');
+                return;
+            }
+            
+            const now = new Date();
+            const expiry = new Date();
+            expiry.setDate(now.getDate() + days-1);
+            
+            document.getElementById('currentDate').textContent = formatDate(now);
+            document.getElementById('expiryDate').textContent = formatDate(expiry);
+            document.getElementById('result').style.display = 'block';
+        }
+    </script>
+</body>
+</html>
