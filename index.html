@@ -67,7 +67,7 @@
             
             const now = new Date();
             const expiry = new Date();
-            expiry.setDate(now.getDate() + days);
+            expiry.setDate(now.getDate() + days-1);
             
             document.getElementById('currentDate').textContent = formatDate(now);
             document.getElementById('expiryDate').textContent = formatDate(expiry);
