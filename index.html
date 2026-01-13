@@ -25,6 +25,7 @@
             border-radius: 5px;
             font-family: monospace;
             line-height: 1.8;
+            font-size: 18px; /* 增大字体两号 */
         }
     </style>
 </head>
@@ -73,6 +74,9 @@
             document.getElementById('expiryDate').textContent = formatDate(expiry);
             document.getElementById('result').style.display = 'block';
         }
+        
+        // 添加下拉框变化监听，实现自动触发
+        document.getElementById('productSelect').addEventListener('change', calculateExpiry);
     </script>
 </body>
 </html>
